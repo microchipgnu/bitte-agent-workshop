@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
     console.log(userAccountId)
 
-    const { data, error } = await tokensByStatus({
+    const { data } = await tokensByStatus({
         metadataId: NFT_METADATA_ID,
         ownedBy: userAccountId,
         network: NEAR_NETWORKS.MAINNET
