@@ -15,33 +15,29 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "City parameter is required" }, { status: 400 });
     }
 
-    const headersList = headers();
-    const mbHeader = headersList.get("mb-metadata")
-    const mbMetadata = JSON.parse(mbHeader || "{}")
+    // const headersList = headers();
+    // const mbHeader = headersList.get("mb-metadata")
+    // const mbMetadata = JSON.parse(mbHeader || "{}")
 
-    const userAccountId = mbMetadata?.accountData?.accountId || "near"
+    // const userAccountId = mbMetadata?.accountData?.accountId || "near"
 
-    console.log(userAccountId)
+    // const { data } = await tokensByStatus({
+    //     metadataId: NFT_METADATA_ID,
+    //     ownedBy: userAccountId,
+    //     network: NEAR_NETWORKS.MAINNET
+    // })
 
-    const { data } = await tokensByStatus({
-        metadataId: NFT_METADATA_ID,
-        ownedBy: userAccountId,
-        network: NEAR_NETWORKS.MAINNET
-    })
+    // // Check if user owns a token
+    // const ownsUnlistedToken = data?.unlistedTokens && data?.unlistedTokens.length > 0
+    // const ownsListedToken = data?.listedTokens && data?.listedTokens.length > 0
 
-    console.log(data)
+    // const userOwnsToken = ownsListedToken || ownsUnlistedToken
 
-    // Check if user owns a token
-    const ownsUnlistedToken = data?.unlistedTokens && data?.unlistedTokens.length > 0
-    const ownsListedToken = data?.listedTokens && data?.listedTokens.length > 0
-
-    const userOwnsToken = ownsListedToken || ownsUnlistedToken
-
-    if (!userOwnsToken) {
-        return NextResponse.json({
-            message: `Please claim a drop first to get Weather API data. Here's the claiming link: ${DROP_URL}`
-        })
-    }
+    // if (!userOwnsToken) {
+    //     return NextResponse.json({
+    //         message: `Please claim a drop first to get Weather API data. Here's the claiming link: ${DROP_URL}`
+    //     })
+    // }
 
     // In a real application, you would fetch this data from a weather API
     // For this example, we'll return mock data
